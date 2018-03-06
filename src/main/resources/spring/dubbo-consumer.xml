@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <dubbo:application name="app-consumer" owner="programmer" organization="dubbox"/>
+
+    <dubbo:registry address="${dubbo.zookeeperAdress}"/>
+
+    <!--uncomment this if you want to test dubbo's monitor-->
+    <dubbo:monitor protocol="registry"/>
+   <import resource="spring-redis.xml"/>
+    <!-- 微信账号服务-->
+    <dubbo:reference id="myTestService" check="false" interface="com.myBabyTao.api.service.MyTestService" />
+
+</beans>

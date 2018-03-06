@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyBabyTao.iml" filepath="$PROJECT_DIR$/MyBabyTao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myBabyTao-app/myBabyTao.iml" filepath="$PROJECT_DIR$/myBabyTao-app/myBabyTao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myBabyTao-Service/myBabyTao-Service.iml" filepath="$PROJECT_DIR$/myBabyTao-Service/myBabyTao-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myBabyTao-common/myBabyTao-common.iml" filepath="$PROJECT_DIR$/myBabyTao-common/myBabyTao-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myBabyTao-interface/myBabyTao-interface.iml" filepath="$PROJECT_DIR$/myBabyTao-interface/myBabyTao-interface.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--默认注解映射的支持 -->
+    <mvc:annotation-driven/>
+
+    <!--自动扫描目录下所有的类文件 -->
+    <context:component-scan base-package="com" />
+
+   <mvc:resources location="/static" mapping="/**"/>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/JavaScript/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <!-- 解析器注册 是后台能绑定表单的日期类型-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="stringHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+    <!-- String类型解析器，允许直接返回String类型的消息 -->
+    <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+        <constructor-arg value="UTF-8" index="0"/>
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <!--静态资源的访问，不让springmvc拦截-->
+
+    <mvc:annotation-driven validator="validator"/>
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--最大上传大小 1M=1024k=1048576字节，10485760=10M-->
+        <property name="maxUploadSize" value="10485760" />
+        <!-- resolveLazily属性启用是为了推迟文件解析，以便在Action 中捕获文件大小异常 -->
+        <property name="resolveLazily" value="true" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+  <!--  <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.focussend.common.interceptor.TokenInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+
+
+</beans>

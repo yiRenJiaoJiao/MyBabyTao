@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="myBabyTao-provider" owner="programmer" organization="dubbox"/>
+
+
+    <dubbo:registry address="${dubbo.zookeeperAdress}"/>
+
+    <!-- 用dubbo协议在20880端口暴露服务 port="20854"-->
+    <dubbo:protocol name="dubbo" port="20454" />
+
+    <dubbo:provider timeout="10000" threadpool="fixed" threads="100" accepts="1000" />
+    <dubbo:service retries="0" interface="com.myBabyTao.api.service.MyTestService" ref="myTestService" />
+    <!--微信服务-->
+    <dubbo:service retries="0" interface="com.myBabyTao.api.service.WechatService" ref="wechatService" />
+
+</beans>
